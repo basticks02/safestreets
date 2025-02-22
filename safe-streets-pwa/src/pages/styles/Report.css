@@ -1,0 +1,38 @@
+.report-container {
+    background: #f8d7da;
+    color: #721c24;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .report-container h1 {
+    font-size: 2rem;
+  }
+  
+  .report-container p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+  
+  .report-container button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .report-container button:hover {
+    background: #e74c3c;
+  }
+  

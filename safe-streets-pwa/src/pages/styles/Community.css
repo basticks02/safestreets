@@ -1,0 +1,40 @@
+.community-container {
+    background: #ecf0f1;
+    color: #2c3e50;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .community-container h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .community-container p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+  
+  .community-container button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .community-container button:hover {
+    background: #2980b9;
+  }
+
+  
