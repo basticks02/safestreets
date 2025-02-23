@@ -1,40 +1,179 @@
+/* Container for the two-pane layout */
 .community-container {
-    background: #ecf0f1;
-    color: #2c3e50;
-    height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    width: 100%;
+    min-height: 100vh;
     font-family: 'Arial', sans-serif;
   }
   
-  .community-container h1 {
-    font-size: 2rem;
+  /* Sidebar styling */
+  .sidebar {
+    width: 300px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+  }
+  
+  .sidebar h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px;
     margin-bottom: 10px;
-  }
-  
-  .community-container p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    line-height: 1.5;
-  }
-  
-  .community-container button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
     transition: background 0.3s ease;
   }
   
-  .community-container button:hover {
-    background: #2980b9;
+  .sidebar li:hover,
+  .sidebar li.active {
+    background: #e0f7fa;
   }
-
+  
+  .hub-name {
+    font-weight: bold;
+    color: #00796b;
+  }
+  
+  .hub-description {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .join-btn {
+    background: #f1c40f;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #333;
+    margin-top: 5px;
+    transition: background 0.3s;
+  }
+  
+  .join-btn:hover {
+    background: #ffcc00;
+  }
+  
+  /* New hub creation button */
+  .create-hub-btn {
+    width: 100%;
+    padding: 10px;
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background 0.3s;
+  }
+  
+  .create-hub-btn:hover {
+    background: #45a049;
+  }
+  
+  /* Main content area styling */
+  .hub-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .hub-content h2 {
+    color: #333;
+    margin-top: 0;
+  }
+  
+  /* Updates list styling */
+  .updates {
+    margin-top: 20px;
+  }
+  
+  .update {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .update-header {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 10px;
+  }
+  
+  .update-content p {
+    margin: 0 0 10px;
+    color: #555;
+  }
+  
+  .update-content img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Update form styling placed at the bottom */
+  .update-form {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  
+  .update-form textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .update-form button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #f1c40f;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .update-form button:hover {
+    background: #ffcc00;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .community-container {
+      flex-direction: column;
+    }
+    .sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+    }
+    .hub-content {
+      width: 100%;
+    }
+  }
   
