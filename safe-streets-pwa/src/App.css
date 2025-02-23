@@ -65,11 +65,10 @@ body {
   margin: 4px 0;
   transition: 0.4s;
 }
-
 /* Mobile Styles */
 @media (max-width: 768px) {
   .app-header {
-    justify-content: space-between; /* Space for hamburger on the right */
+    justify-content: space-between; /* Allow space for hamburger on the right */
   }
 
   .hamburger {
@@ -78,24 +77,25 @@ body {
 
   /* Hide nav links initially on mobile */
   .nav-links {
-    position: fixed; /* Fix so it overlays the content */
-    top: 70px;       /* Slightly below the header's height */
+    position: fixed;
+    top: 70px;
     left: 0;
     right: 0;
     background-color: #f2f2f7;
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    padding: 12px 0;
+    padding: 0;                /* Remove padding when closed */
     border-radius: 0 0 12px 12px;
-    max-height: 0;
+    max-height: 0;             /* Collapsed */
     overflow: hidden;
-    transition: max-height 0.3s ease;
-    z-index: 2000; /* Ensure it's above main content */
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    z-index: 2000;             /* Ensure it sits above content */
   }
 
-  /* Show navigation when menu is open */
+  /* When open, restore padding and expand max-height */
   .nav-links.open {
+    padding: 12px 0;
     max-height: 250px;
   }
 
@@ -104,15 +104,4 @@ body {
     margin: 4px 0;
     text-align: center;
   }
-}
-
-/* App Container */
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 100vh;
-  padding: 20px;
 }
