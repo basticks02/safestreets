@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles/Community.css';
 
-// Sample data for community hubs
+// Sample data to initialize hubs if none exist in localStorage
 const sampleHubs = [
   {
     id: 1,
@@ -41,20 +41,70 @@ const sampleHubs = [
 ];
 
 function Community() {
-  const [hubs, setHubs] = useState(sampleHubs);
+  // Retrieve hubs from localStorage if they exist, otherwise initialize with sampleHubs
+  const [hubs, setHubs] = useState(() => {
+    const stored = localStorage.getItem('communityHubs');
+    return stored ? JSON.parse(stored) : sampleHubs;
+  });
   const [selectedHub, setSelectedHub] = useState(null);
   const [newUpdate, setNewUpdate] = useState("");
+  const [updateIsRecording, setUpdateIsRecording] = useState(false);
+  const [newHubName, setNewHubName] = useState("");
+  const [newHubDescription, setNewHubDescription] = useState("");
 
-  // Automatically select the first hub on mount
+  // Automatically select the first hub on mount (if any)
   useEffect(() => {
     if (hubs.length > 0 && !selectedHub) {
       setSelectedHub(hubs[0]);
     }
   }, [hubs, selectedHub]);
 
-  // Handle posting a new update (append to the bottom)
+  // Persist hubs in localStorage whenever hubs state changes
+  useEffect(() => {
+    localStorage.setItem('communityHubs', JSON.stringify(hubs));
+  }, [hubs]);
+
+  // Join hub functionality (stubbed)
+  const handleJoin = (hubId, e) => {
+    e.stopPropagation();
+    console.log(`User joined hub ${hubId}`);
+    // Later, implement join API call or notification subscription here
+  };
+
+  // Delete hub functionality
+  const handleDeleteHub = (hubId, e) => {
+    e.stopPropagation();
+    if (window.confirm("Are you sure you want to delete this hub?")) {
+      const updatedHubs = hubs.filter((hub) => hub.id !== hubId);
+      setHubs(updatedHubs);
+      if (selectedHub && selectedHub.id === hubId) {
+        setSelectedHub(updatedHubs.length > 0 ? updatedHubs[0] : null);
+      }
+    }
+  };
+
+  // Create a new hub
+  const handleCreateHub = () => {
+    if (!newHubName.trim()) {
+      alert("Hub name is required.");
+      return;
+    }
+    const newHub = {
+      id: Date.now(),
+      name: newHubName,
+      description: newHubDescription || "",
+      updates: [],
+    };
+    const updatedHubs = [...hubs, newHub];
+    setHubs(updatedHubs);
+    setSelectedHub(newHub);
+    setNewHubName("");
+    setNewHubDescription("");
+  };
+
+  // Post a new update for the selected hub (appended to the bottom)
   const handlePostUpdate = () => {
-    if (!newUpdate.trim()) return;
+    if (!newUpdate.trim() || !selectedHub) return;
     const newUpdateObj = {
       id: Date.now(), // In production, use a unique ID from the backend
       timestamp: new Date().toISOString(),
@@ -62,7 +112,6 @@ function Community() {
       image: null,
       comments: [],
     };
-
     const updatedHubs = hubs.map((hub) =>
       hub.id === selectedHub.id
         ? { ...hub, updates: [...hub.updates, newUpdateObj] }
@@ -73,25 +122,35 @@ function Community() {
     setNewUpdate("");
   };
 
-  // Handle creating a new hub via a simple prompt
-  const handleCreateHub = () => {
-    const hubName = prompt("Enter the new community hub name:");
-    if (!hubName) return;
-    const hubDescription = prompt("Enter a description for the new hub:");
-    const newHub = {
-      id: Date.now(),
-      name: hubName,
-      description: hubDescription || "",
-      updates: [],
+  // Speech recognition for the update input box
+  const handleVoiceInputForUpdate = () => {
+    if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
+      alert("Your browser does not support voice input.");
+      return;
+    }
+    const recognition = new (window.webkitSpeechRecognition || window.SpeechRecognition)();
+    recognition.lang = "en-US";
+    recognition.start();
+    setUpdateIsRecording(true);
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setNewUpdate(transcript);
     };
-    const updatedHubs = [...hubs, newHub];
-    setHubs(updatedHubs);
-    setSelectedHub(newHub);
+
+    recognition.onend = () => {
+      setUpdateIsRecording(false);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error:", event.error);
+      setUpdateIsRecording(false);
+    };
   };
 
   return (
     <div className="community-container">
-      {/* Sidebar: List of Hubs */}
+      {/* Sidebar: List of Hubs & Create New Hub Form */}
       <div className="sidebar">
         <h2>Community Hubs</h2>
         <ul>
@@ -103,19 +162,36 @@ function Community() {
             >
               <div className="hub-name">{hub.name}</div>
               <div className="hub-description">{hub.description}</div>
-              <button className="join-btn" onClick={(e) => { e.stopPropagation(); console.log(`User joined hub ${hub.id}`); }}>
-                Join
-              </button>
+              <div className="hub-actions">
+                <button className="join-btn" onClick={(e) => handleJoin(hub.id, e)}>
+                  Join
+                </button>
+                <button className="delete-btn" onClick={(e) => handleDeleteHub(hub.id, e)}>
+                  Delete
+                </button>
+              </div>
             </li>
           ))}
         </ul>
-        {/* Create New Hub Button */}
-        <button className="create-hub-btn" onClick={handleCreateHub}>
-          Create New Hub
-        </button>
+        <div className="create-hub-form">
+          <h3>Create New Hub</h3>
+          <input
+            type="text"
+            placeholder="Hub Name"
+            value={newHubName}
+            onChange={(e) => setNewHubName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Hub Description"
+            value={newHubDescription}
+            onChange={(e) => setNewHubDescription(e.target.value)}
+          />
+          <button onClick={handleCreateHub}>Create Hub</button>
+        </div>
       </div>
 
-      {/* Main Content: Selected Hub's Updates */}
+      {/* Main content: Selected Hub's Updates */}
       <div className="hub-content">
         {selectedHub ? (
           <>
@@ -145,7 +221,15 @@ function Community() {
                 value={newUpdate}
                 onChange={(e) => setNewUpdate(e.target.value)}
               ></textarea>
-              <button onClick={handlePostUpdate}>Post Update</button>
+              <div className="update-form-actions">
+                <button onClick={handlePostUpdate}>Post Update</button>
+                <button
+                  className={`mic-btn ${updateIsRecording ? "recording" : ""}`}
+                  onClick={handleVoiceInputForUpdate}
+                >
+                  {updateIsRecording ? "Stop Recording" : "Speak"}
+                </button>
+              </div>
             </div>
           </>
         ) : (

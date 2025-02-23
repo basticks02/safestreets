@@ -51,24 +51,62 @@
     margin: 5px 0;
   }
   
-  .join-btn {
-    background: #f1c40f;
+  .hub-actions {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .join-btn, .delete-btn {
+    flex: 1;
+    padding: 5px;
     border: none;
-    padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;
     font-size: 0.8rem;
-    color: #333;
-    margin-top: 5px;
     transition: background 0.3s;
+  }
+  
+  .join-btn {
+    background: #f1c40f;
+    color: #333;
   }
   
   .join-btn:hover {
     background: #ffcc00;
   }
   
-  /* New hub creation button */
-  .create-hub-btn {
+  .delete-btn {
+    background: #e74c3c;
+    color: #fff;
+  }
+  
+  .delete-btn:hover {
+    background: #c0392b;
+  }
+  
+  /* Create New Hub Form */
+  .create-hub-form {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  
+  .create-hub-form h3 {
+    margin: 0 0 10px;
+    color: #333;
+  }
+  
+  .create-hub-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .create-hub-form button {
     width: 100%;
     padding: 10px;
     background: #4caf50;
@@ -77,11 +115,10 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    margin-top: 20px;
     transition: background 0.3s;
   }
   
-  .create-hub-btn:hover {
+  .create-hub-form button:hover {
     background: #45a049;
   }
   
@@ -146,8 +183,13 @@
     min-height: 80px;
   }
   
-  .update-form button {
+  .update-form-actions {
+    display: flex;
+    gap: 10px;
     margin-top: 10px;
+  }
+  
+  .update-form button {
     padding: 8px 16px;
     background: #f1c40f;
     color: #333;
@@ -160,6 +202,37 @@
   
   .update-form button:hover {
     background: #ffcc00;
+  }
+  
+  .mic-btn {
+    padding: 8px 16px;
+    background: #ff4b5c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .mic-btn:hover {
+    background: #ff3b4c;
+  }
+  
+  .mic-btn.recording {
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+      0% {
+          box-shadow: 0 0 8px rgba(255, 75, 92, 0.5);
+      }
+      50% {
+          box-shadow: 0 0 16px rgba(255, 75, 92, 0.8);
+      }
+      100% {
+          box-shadow: 0 0 8px rgba(255, 75, 92, 0.5);
+      }
   }
   
   /* Responsive adjustments */
