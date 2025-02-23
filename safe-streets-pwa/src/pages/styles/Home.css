@@ -1,148 +1,153 @@
 /* General container styling */
 .home-container {
     text-align: center;
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-    color: white;
+    background-color: #ffffff; /* Clean white background */
+    color: #1c1c1e; /* Dark text for high contrast */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
-    font-family: 'Helvetica Neue', sans-serif;
-}
-
-/* Header styles */
-.home-container h1 {
-    font-size: 3rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  
+  /* Header styles */
+  .home-container h1 {
+    font-size: 2.5rem;
     margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.home-container p {
-    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1c1c1e;
+  }
+  
+  .home-container p {
+    font-size: 1rem;
     margin-bottom: 20px;
-    opacity: 0.85;
-}
-
-/* Single input box for text and voice input */
-.input-box {
+    color: #3a3a3c;
+  }
+  
+  /* Single input box for text and voice input */
+  .input-box {
     display: flex;
     align-items: center;
-    background: #fff;
-    border-radius: 50px;
-    padding: 10px 20px;
+    background-color: #f2f2f7; /* iOS light gray */
+    border-radius: 25px;
+    padding: 10px 15px;
     width: 100%;
     max-width: 600px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-}
-
-.input-box input {
+  }
+  
+  .input-box input {
     flex: 1;
     border: none;
-    padding: 12px;
+    background: transparent;
+    padding: 10px;
     font-size: 1rem;
     outline: none;
-    border-radius: 50px;
+    border-radius: 25px;
     text-align: center;
-}
-
-.input-box input::placeholder {
-    color: #aaa;
-}
-
-/* Microphone button styling */
-.mic-button {
-    background: #ff4b5c;
+    color: #1c1c1e;
+  }
+  
+  .input-box input::placeholder {
+    color: #8e8e93;
+  }
+  
+  /* Microphone button styling */
+  .mic-button {
+    background: #007aff; /* Classic iOS blue */
     color: #fff;
     border: none;
     margin-left: 10px;
     padding: 10px;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     cursor: pointer;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.3s ease;
-}
-
-.mic-button:hover {
-    background: #ff3b4c;
-}
-
-/* Recording animation */
-.recording {
+  }
+  
+  .mic-button:hover {
+    background: #0051a8;
+  }
+  
+  /* Recording animation */
+  .recording {
     animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
+  }
+  
+  @keyframes pulse {
     0% {
-        box-shadow: 0 0 8px rgba(255, 75, 92, 0.5);
+      box-shadow: 0 0 8px rgba(0, 122, 255, 0.5);
     }
     50% {
-        box-shadow: 0 0 16px rgba(255, 75, 92, 0.8);
+      box-shadow: 0 0 16px rgba(0, 122, 255, 0.8);
     }
     100% {
-        box-shadow: 0 0 8px rgba(255, 75, 92, 0.5);
+      box-shadow: 0 0 8px rgba(0, 122, 255, 0.5);
     }
-}
-
-/* Find route button */
-.find-route-btn {
-    padding: 14px 28px;
-    background: #f1c40f;
-    color: #333;
+  }
+  
+  /* Find route button styling */
+  .find-route-btn {
+    padding: 12px 24px;
+    background-color: #007aff; /* iOS blue */
+    color: #ffffff;
     border: none;
-    border-radius: 30px;
+    border-radius: 25px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     transition: background 0.3s ease;
     margin-bottom: 30px;
-}
-
-.find-route-btn:hover {
-    background: #ffcc00;
-}
-
-/* Map container */
-.map-container {
+  }
+  
+  .find-route-btn:hover {
+    background-color: #0051a8;
+  }
+  
+  /* Map container styling */
+  .map-container {
     width: 90%;
     max-width: 1000px;
-    height: 600px;
+    height: 60vh;
+    min-height: 300px;
     margin: 20px auto;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Navigation bar */
-nav {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Navigation styling */
+  nav {
     margin-top: 20px;
-}
-
-nav a {
-    color: #f1c40f;
-    font-weight: bold;
+  }
+  
+  nav a {
+    color: #007aff;
+    font-weight: 600;
     text-decoration: none;
     padding: 10px 20px;
     margin: 0 10px;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    background: #f2f2f7;
     transition: background 0.3s;
-}
-
-nav a:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
+  }
+  
+  nav a:hover {
+    background: #e5e5ea;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
     .map-container {
-        height: 400px;
+      height: 40vh;
     }
     .input-box {
-        max-width: 90%;
+      max-width: 90%;
     }
-}
+  }
+  
