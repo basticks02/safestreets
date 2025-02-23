@@ -11,7 +11,7 @@ body {
 .app-header {
   position: relative;
   display: flex;
-  justify-content: center; /* Center the header */
+  justify-content: center; /* Center the header content */
   align-items: center;
   width: 90%;
   max-width: 800px;
@@ -21,13 +21,15 @@ body {
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
-  position: relative;
+  z-index: 1000; /* Ensures the header is above other content */
 }
 
 /* Navigation Links (Desktop) */
 .nav-links {
   display: flex;
   gap: 16px;
+  position: relative; /* For desktop, no overlap needed */
+  z-index: 1001;      /* Above the header background */
 }
 
 .nav-links a {
@@ -40,19 +42,11 @@ body {
   transition: background 0.3s ease;
 }
 
-/* Ensure nav links are centered */
-.nav-links-container {
-  flex-grow: 1; /* Makes sure the nav takes space */
-  display: flex;
-  justify-content: center;
-}
-
-/* Hover effect */
 .nav-links a:hover {
   background-color: #e5e5ea;
 }
 
-/* Hamburger Icon - Now on Right */
+/* Hamburger Icon - on the right */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -61,6 +55,7 @@ body {
   right: 20px; /* Push to the right */
   top: 50%;
   transform: translateY(-50%);
+  z-index: 1002; /* On top of everything in header */
 }
 
 .hamburger .bar {
@@ -74,7 +69,7 @@ body {
 /* Mobile Styles */
 @media (max-width: 768px) {
   .app-header {
-    justify-content: space-between; /* Allow spacing for hamburger */
+    justify-content: space-between; /* Space for hamburger on the right */
   }
 
   .hamburger {
@@ -83,8 +78,8 @@ body {
 
   /* Hide nav links initially on mobile */
   .nav-links {
-    position: absolute;
-    top: 60px;
+    position: fixed; /* Fix so it overlays the content */
+    top: 70px;       /* Slightly below the header's height */
     left: 0;
     right: 0;
     background-color: #f2f2f7;
@@ -96,11 +91,12 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    z-index: 2000; /* Ensure it's above main content */
   }
 
   /* Show navigation when menu is open */
   .nav-links.open {
-    max-height: 200px;
+    max-height: 250px;
   }
 
   .nav-links a {
