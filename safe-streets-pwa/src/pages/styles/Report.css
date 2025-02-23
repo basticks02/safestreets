@@ -1,38 +1,89 @@
+/* Container for the report page */
 .report-container {
-    background: #f8d7da;
-    color: #721c24;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.report-container h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.report-container p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Button group for emergency calls */
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.emergency-btn {
+  padding: 12px 20px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.emergency-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Report form styling */
+.report-form {
+  margin-top: 20px;
+}
+
+.report-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: vertical;
+  min-height: 100px;
+  margin-bottom: 15px;
+}
+
+.send-btn {
+  padding: 12px 20px;
+  background-color: #f1c40f;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.send-btn:hover {
+  background-color: #ffcc00;
+}
+
+.send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .report-container {
+    margin: 20px;
+    padding: 20px;
   }
-  
-  .report-container h1 {
-    font-size: 2rem;
-  }
-  
-  .report-container p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    line-height: 1.5;
-  }
-  
-  .report-container button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    background: #c0392b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .report-container button:hover {
-    background: #e74c3c;
-  }
-  
+}
